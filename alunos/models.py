@@ -8,3 +8,6 @@ class Estado(models.Model):
 
     def __str__(self):
         return f"{self.nome} ({self.sigla})"
+
+class Cidade(models.Model):
+    nome = models.CharField(max_length=50)
