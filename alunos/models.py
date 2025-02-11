@@ -11,3 +11,21 @@ class Estado(models.Model):
 
 class Cidade(models.Model):
     nome = models.CharField(max_length=50)
+    estado = models.ForeignKey(Estado, on_delete=models.PROTECT, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nome} ({self.estado.sigla})"
+
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=50)
+    telefone = models.CharField(max_length=15)
+    email = models.EmailField()
+    datanascimento = models.DateField()
+    cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.nome
+
+class Meta:
+    verbose_name= "Pessoa"
+    verbose_name_plural= "Pessoas"
